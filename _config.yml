@@ -1,0 +1,12 @@
+# Site settings
+title: Colin Pollock
+email: colin@colinpollock.net
+description: >
+  Stuff and things.
+baseurl: ""
+url: "http://colinpollock.github.io"
+github_username:  colinpollock
+#twitter_username: meh
+
+# Build settings
+markdown: kramdown
