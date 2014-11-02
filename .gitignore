@@ -1,4 +1,5 @@
-.sw*
+*.sw*
+TODO.md
 
 # Jekyll Stuff
 _site
