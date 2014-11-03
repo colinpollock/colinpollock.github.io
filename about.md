@@ -20,6 +20,14 @@ Things I like
 `print 'hello, world'`
 
 
+# [Seinfeld](http://www.imdb.com/title/tt0098904/)
+![Seinfeld Poster](http://www.geeksandcleats.com/wp-content/uploads/2014/07/seinfeld-star-wars-photo-anniversary.jpg)
+
+
+# Gorgonzola and other cats
+![Gorg](https://farm8.staticflickr.com/7506/15670027646_b1602317e7_n.jpg)
+
+
 # [Linguistics][syntax-wiki]
 ![Tree](https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRS-7nGrMZg7_QSbAqbzxkAZf0uSRfgcwpfZPBBculhgFnog9aI)
 
