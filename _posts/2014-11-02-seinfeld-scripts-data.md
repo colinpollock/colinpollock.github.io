@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  "Seinfeld Script Data"
-#date:   2014-11-02 17:02:00
+title: "Seinfeld Script Data"
+date: 2014-11-02 17:02:00
 tags: seinfeld data
 ---
-
-
 I grew up watching Seinfeld and for better or worse it probably formed a large part of my sense of humor. I was too young to watch the early seasons live, but for the later ones I clearly remember the excitement I'd feel at 8:30pm Thursday night when Friends started because that meant it was only half an hour until Seinfeld would come on.
 
 I also typically watched re-runs every night so I saw some of the older episodes, but they were mostly out of order. It wasn't until the DVDs came out that I actually watched whole seasons end to end, and I developed a deep appreciation of the show.
