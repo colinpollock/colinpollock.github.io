@@ -1,15 +1,15 @@
 ---
-layout: post
-title: Seinfeld Script Data
-date: 2014-11-02 17:02:00
-category: data
-tags: seinfeld, seinfeld scripts
+Title: Seinfeld Script Data
+Date: 2014-11-02 17:02:00
+Modified: 2020-03-05 23:00:00
+Category: data
+Tags: seinfeld, seinfeld scripts
+Slug: seinfeld-script-data
 ---
-I grew up watching Seinfeld and for better or worse it probably formed a large part of my sense of humor. I was too young to watch the early seasons live, but for the later ones I clearly remember the excitement I'd feel at 8:30pm Thursday night when Friends started because that meant it was only half an hour until Seinfeld would come on.
 
-I also typically watched re-runs every night so I saw some of the older episodes, but they were mostly out of order. It wasn't until the DVDs came out that I actually watched whole seasons end to end, and I developed a deep appreciation of the show.
+I grew up watching Seinfeld and for better or worse it formed a large part of my personality. I was too young to watch the early seasons live, but for the later ones I clearly remember the excitement I'd feel at 8:30pm Thursday night when Friends started because that meant it was only half an hour until Seinfeld would come on.
 
-At some point around then I wrote some Python scripts to pull down Seinfeld scripts. I wanted to play around with various natural language processing algorithms using Seinfeld scripts as a corpus. I recently thought it'd be fun to play around with the data again, so I cleaned up the scraping scripts and verified that everything works.
+So when I was experimenting with various natural language processing algorithms I thought it'd be fun to use Seinfeld scripts as a corpus. I packaged up the scripts in a SQLite database, and this post outlines the schema and how you can interact with it.
 
 
 ### Data ###
