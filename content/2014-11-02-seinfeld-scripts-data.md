@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Seinfeld Script Data"
+title: Seinfeld Script Data
 date: 2014-11-02 17:02:00
 category: data
 tags: seinfeld, seinfeld scripts
@@ -12,19 +12,15 @@ I also typically watched re-runs every night so I saw some of the older episodes
 At some point around then I wrote some Python scripts to pull down Seinfeld scripts. I wanted to play around with various natural language processing algorithms using Seinfeld scripts as a corpus. I recently thought it'd be fun to play around with the data again, so I cleaned up the scraping scripts and verified that everything works.
 
 
-Data
-====
+### Data ###
 
 If you want to generate this data yourself check out [the code on my github](http://github.com/colinpollock/seinfeld-scripts). If you just want the SQLite DB file please feel free to send me a message on github or email me.
 
 
-Database Schema
-===============
+### Database Schema ###
 
-Episode
--------
-
-{% highlight SQL %}
+#### Episode ####
+```sql
 sqlite> .schema episode
 CREATE TABLE episode(
     id INTEGER PRIMARY KEY,
@@ -36,19 +32,17 @@ CREATE TABLE episode(
     director TEXT,
     UNIQUE(season_number, episode_number)
 );
-{% endhighlight %}
+```
 
-{% highlight SQL %}
+```sql
 sqlite> SELECT * FROM EPISODE LIMIT 1;
 id	season_number	episode_number	title	the_date	writer	director
 3	6	16	The Beard	February 9, 1995	Carol Leifer	Andy Ackerman
-{% endhighlight %}
+```
 
 
-Utterance
----------
-
-{% highlight SQL %}
+#### Utterance ####
+```sql
 sqlite> .schema utterance
 CREATE TABLE utterance(
     id INTEGER PRIMARY KEY,
@@ -59,20 +53,17 @@ CREATE TABLE utterance(
     UNIQUE(episode_id, utterance_number),
     FOREIGN KEY(episode_id) REFERENCES episode(id)
 );
-{% endhighlight %}
+```
 
-{% highlight SQL %}
+```sql
 sqlite> SELECT * FROM UTTERANCE LIMIT 1;
 id	episode_id	utterance_number	speaker
 1	1	1	JERRY
+```
 
-{% endhighlight %}
 
-
-Sentence
---------
-
-{% highlight sql %}
+#### Sentence ####
+```sql
 sqlite> .schema sentence
 CREATE TABLE sentence(
     id INTEGER PRIMARY KEY,
@@ -82,25 +73,24 @@ CREATE TABLE sentence(
     UNIQUE(utterance_id, sentence_number),
     FOREIGN KEY(utterance_id) REFERENCES utterance(id)
 );
-{% endhighlight %}
+```
 
 
-{% highlight sql %}
+```sql
 sqlite> SELECT * FROM SENTENCE LIMIT 1;
 id	utterance_id	sentence_number	text
 3	1	3	It's too high!
-{% endhighlight %}
+```
 
 
-Some Simple Statistics
-======================
+### Some Simple Statistics ###
 
 There are a lot of potentially interesting things to do with this data, most of which would require further processing. There are some basic but interesting questions that can be answered by simple SQL queries.
 
 
-### Which characters speak the most lines?
+#### Which characters speak the most lines? ####
 
-{% highlight sql %}
+```sql
 SELECT speaker, COUNT(*) AS count
 FROM utterance
 GROUP BY speaker
@@ -117,15 +107,14 @@ HELEN       470
 FRANK       429
 SUSAN       382
 ESTELLE     273
-
-{% endhighlight %}
+```
 
 That seems about right-- the show is definitely dominated by the four main characters.
 
 
-### Which characters have speaking roles in the greatest number of episodes?
+#### Which characters have speaking roles in the greatest number of episodes? ####
 
-{% highlight sql %}
+```sql
 SELECT u.speaker, COUNT(DISTINCT e.id) AS num_episodes
 FROM episode e JOIN utterance u ON e.id = u.episode_id
 GROUP BY u.speaker
@@ -142,24 +131,21 @@ NEWMAN      43
 SUSAN       28
 FRANK       26
 ESTELLE     24
-{% endhighlight %}
+```
 
 The appearances are also dominated by the main cast. Interestingly, some lines are attributed to "MAN" and "WOMAN", which points to some data quality issues. Ideally unnamed characters would have unique names like "MAN WATERING PLANTS".
 
 
-Project Ideas
-=============
+### Project Ideas ###
 
-### Script Viewer
+#### Script Viewer ####
 One of the main reasons I initially got this data together was to learn some front-end skills by developing a better UI for browsing through Seinfeld scripts. I had imagined all kinds of cross-linking between episodes and possibly links off to Wikipedia.
 
-### Exploration of the Characters
+#### Exploration of the Characters ####
 * Do particular characters have catch phrases (maybe high TF-IDF ngrams where TF is within the character's lines and IDF is for all speakers)?
 * Are there characters who gain screen time over time?
 * How many episodes are heavy on just a few of the main characters (e.g. a Jerry and George episode)?
 * How positive, on average, are the various characters? Are there other interesting stylistic characteristics to look at?
 
-### Corpus for Exploring NLP Algorithms
+#### Corpus for Exploring NLP Algorithms ####
 I like playing with Wikipedia, but it'll be fun to have something a bit smaller and closer to my heart. It'd be fun to play around with language models and to generate sentences for particular characters (e.g. a Kramerish sentence).
-
-
