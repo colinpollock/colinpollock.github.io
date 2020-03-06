@@ -1,0 +1,5 @@
+output/
+__pycache__/
+.sass-cache/
+.python-version
+.venv/
