@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>"Seinfeld Script Data" — Colin Pollock</title>
-	<meta name="description" content="Title: "Seinfeld Script Data"; Date: 2014-11-02; Author: Colin Pollock">
+	<title>Seinfeld Script Data — Blog</title>
+	<meta name="description" content="Title: Seinfeld Script Data; Date: 2014-11-02; Author: Colin Pollock">
 	<meta name="author" content="Colin Pollock">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -20,13 +20,13 @@
 <body>
 <div class="container">
 	<div class="page-header">
-		<h1><a href="http://colinpollock.net/">Colin Pollock</a>
+		<h1><a href="http://colinpollock.net/">Blog</a>
 			<br>	</div>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 <div class="article" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">"Seinfeld Script Data"</h1>
+		<h1 itemprop="name headline" class="article-title">Seinfeld Script Data</h1>
 		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 			<h4 itemprop="name">Colin Pollock</h4>
 		</span>
@@ -48,113 +48,126 @@
 			<a href="http://colinpollock.net/tag/seinfeld-scripts.html" rel="tag">seinfeld scripts</a>
 		</span>
 	</div>
-	<div itemprop="articleBody" class="article-body"><p>I grew up watching Seinfeld and for better or worse it probably formed a large part of my sense of humor. I was too young to watch the early seasons live, but for the later ones I clearly remember the excitement I'd feel at 8:30pm Thursday night when Friends started because that meant it was only half an hour until Seinfeld would come on.</p>
-<p>I also typically watched re-runs every night so I saw some of the older episodes, but they were mostly out of order. It wasn't until the DVDs came out that I actually watched whole seasons end to end, and I developed a deep appreciation of the show.</p>
-<p>At some point around then I wrote some Python scripts to pull down Seinfeld scripts. I wanted to play around with various natural language processing algorithms using Seinfeld scripts as a corpus. I recently thought it'd be fun to play around with the data again, so I cleaned up the scraping scripts and verified that everything works.</p>
-<h1>Data</h1>
+	<div itemprop="articleBody" class="article-body"><p>I grew up watching Seinfeld and for better or worse it formed a large part of my personality. I was too young to watch the early seasons live, but for the later ones I clearly remember the excitement I'd feel at 8:30pm Thursday night when Friends started because that meant it was only half an hour until Seinfeld would come on.</p>
+<p>So when I was experimenting with various natural language processing algorithms I thought it'd be fun to use Seinfeld scripts as a corpus. I packaged up the scripts in a SQLite database, and this post outlines the schema and how you can interact with it.</p>
+<h3>Data</h3>
 <p>If you want to generate this data yourself check out <a href="http://github.com/colinpollock/seinfeld-scripts">the code on my github</a>. If you just want the SQLite DB file please feel free to send me a message on github or email me.</p>
-<h1>Database Schema</h1>
-<h2>Episode</h2>
-<p _="%" endhighlight>{% highlight SQL %}
-sqlite&gt; .schema episode
-CREATE TABLE episode(
-    id INTEGER PRIMARY KEY,
-    season_number INTEGER NOT NULL,
-    episode_number INTEGER NOT NULL,
-    title TEXT,
-    the_date TEXT,
-    writer TEXT,
-    director TEXT,
-    UNIQUE(season_number, episode_number)
-);</p>
-<p _="%" endhighlight>{% highlight SQL %}
-sqlite&gt; SELECT * FROM EPISODE LIMIT 1;
-id  season_number   episode_number  title   the_date    writer  director
-3   6   16  The Beard   February 9, 1995    Carol Leifer    Andy Ackerman</p>
-<h2>Utterance</h2>
-<p>{% highlight SQL %}
-sqlite&gt; .schema utterance
-CREATE TABLE utterance(
-    id INTEGER PRIMARY KEY,
-    episode_id INTEGER NOT NULL,
-    utterance_number INTEGER NOT NULL,</p>
-<div class="highlight"><pre><span></span><span class="err">speaker TEXT NOT NULL,</span>
-<span class="err">UNIQUE(episode_id, utterance_number),</span>
-<span class="err">FOREIGN KEY(episode_id) REFERENCES episode(id)</span>
+<h3>Database Schema</h3>
+<h4>Episode</h4>
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="p">.</span><span class="k">schema</span> <span class="n">episode</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">episode</span><span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">season_number</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">episode_number</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">title</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">the_date</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">writer</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">director</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="k">UNIQUE</span><span class="p">(</span><span class="n">season_number</span><span class="p">,</span> <span class="n">episode_number</span><span class="p">)</span>
+<span class="p">);</span>
 </pre></div>
 
 
-<p _="%" endhighlight>);</p>
-<p>{% highlight SQL %}
-sqlite&gt; SELECT * FROM UTTERANCE LIMIT 1;
-id  episode_id  utterance_number    speaker
-1   1   1   JERRY</p>
-<p>{% endhighlight %}</p>
-<h2>Sentence</h2>
-<p _="%" endhighlight>{% highlight sql %}
-sqlite&gt; .schema sentence
-CREATE TABLE sentence(
-    id INTEGER PRIMARY KEY,
-    utterance_id INTEGER NOT NULL,
-    sentence_number INTEGER NOT NULL,
-    text TEXT NOT NULL,
-    UNIQUE(utterance_id, sentence_number),
-    FOREIGN KEY(utterance_id) REFERENCES utterance(id)
-);</p>
-<p _="%" endhighlight>{% highlight sql %}
-sqlite&gt; SELECT * FROM SENTENCE LIMIT 1;
-id  utterance_id    sentence_number text
-3   1   3   It's too high!</p>
-<h1>Some Simple Statistics</h1>
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">EPISODE</span> <span class="k">LIMIT</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">id</span>  <span class="n">season_number</span>   <span class="n">episode_number</span>  <span class="n">title</span>   <span class="n">the_date</span>    <span class="n">writer</span>  <span class="n">director</span>
+<span class="mi">3</span>   <span class="mi">6</span>   <span class="mi">16</span>  <span class="n">The</span> <span class="n">Beard</span>   <span class="n">February</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1995</span>    <span class="n">Carol</span> <span class="n">Leifer</span>    <span class="n">Andy</span> <span class="n">Ackerman</span>
+</pre></div>
+
+
+<h4>Utterance</h4>
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="p">.</span><span class="k">schema</span> <span class="n">utterance</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">utterance</span><span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">episode_id</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">utterance_number</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+
+    <span class="n">speaker</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">UNIQUE</span><span class="p">(</span><span class="n">episode_id</span><span class="p">,</span> <span class="n">utterance_number</span><span class="p">),</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">episode_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">episode</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">UTTERANCE</span> <span class="k">LIMIT</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">id</span>  <span class="n">episode_id</span>  <span class="n">utterance_number</span>    <span class="n">speaker</span>
+<span class="mi">1</span>   <span class="mi">1</span>   <span class="mi">1</span>   <span class="n">JERRY</span>
+</pre></div>
+
+
+<h4>Sentence</h4>
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="p">.</span><span class="k">schema</span> <span class="n">sentence</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">sentence</span><span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">utterance_id</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">sentence_number</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="nb">text</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">UNIQUE</span><span class="p">(</span><span class="n">utterance_id</span><span class="p">,</span> <span class="n">sentence_number</span><span class="p">),</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">utterance_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">utterance</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">SENTENCE</span> <span class="k">LIMIT</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">id</span>  <span class="n">utterance_id</span>    <span class="n">sentence_number</span> <span class="nb">text</span>
+<span class="mi">3</span>   <span class="mi">1</span>   <span class="mi">3</span>   <span class="n">It</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">too</span> <span class="n">high</span><span class="o">!</span>
+</pre></div>
+
+
+<h3>Some Simple Statistics</h3>
 <p>There are a lot of potentially interesting things to do with this data, most of which would require further processing. There are some basic but interesting questions that can be answered by simple SQL queries.</p>
-<h3>Which characters speak the most lines?</h3>
-<p>{% highlight sql %}
-SELECT speaker, COUNT(*) AS count
-FROM utterance
-GROUP BY speaker
-ORDER BY count DESC
-LIMIT 10;</p>
-<p>JERRY       14645
-GEORGE      9613
-ELAINE      7967
-KRAMER      6656
-NEWMAN      625
-MORTY       502
-HELEN       470
-FRANK       429
-SUSAN       382
-ESTELLE     273</p>
-<p>{% endhighlight %}</p>
+<h4>Which characters speak the most lines?</h4>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">speaker</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="k">count</span>
+<span class="k">FROM</span> <span class="n">utterance</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">speaker</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">count</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="n">JERRY</span>       <span class="mi">14645</span>
+<span class="n">GEORGE</span>      <span class="mi">9613</span>
+<span class="n">ELAINE</span>      <span class="mi">7967</span>
+<span class="n">KRAMER</span>      <span class="mi">6656</span>
+<span class="n">NEWMAN</span>      <span class="mi">625</span>
+<span class="n">MORTY</span>       <span class="mi">502</span>
+<span class="n">HELEN</span>       <span class="mi">470</span>
+<span class="n">FRANK</span>       <span class="mi">429</span>
+<span class="n">SUSAN</span>       <span class="mi">382</span>
+<span class="n">ESTELLE</span>     <span class="mi">273</span>
+</pre></div>
+
+
 <p>That seems about right-- the show is definitely dominated by the four main characters.</p>
-<h3>Which characters have speaking roles in the greatest number of episodes?</h3>
-<p>{% highlight sql %}
-SELECT u.speaker, COUNT(DISTINCT e.id) AS num_episodes
-FROM episode e JOIN utterance u ON e.id = u.episode_id
-GROUP BY u.speaker
-ORDER BY num_episodes DESC
-LIMIT 10;</p>
-<p _="%" endhighlight>JERRY       173
-GEORGE      171
-KRAMER      170
-ELAINE      169
-MAN         53
-WOMAN       44
-NEWMAN      43
-SUSAN       28
-FRANK       26
-ESTELLE     24</p>
+<h4>Which characters have speaking roles in the greatest number of episodes?</h4>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">u</span><span class="p">.</span><span class="n">speaker</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">e</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">AS</span> <span class="n">num_episodes</span>
+<span class="k">FROM</span> <span class="n">episode</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">utterance</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">episode_id</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">u</span><span class="p">.</span><span class="n">speaker</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">num_episodes</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="n">JERRY</span>       <span class="mi">173</span>
+<span class="n">GEORGE</span>      <span class="mi">171</span>
+<span class="n">KRAMER</span>      <span class="mi">170</span>
+<span class="n">ELAINE</span>      <span class="mi">169</span>
+<span class="n">MAN</span>         <span class="mi">53</span>
+<span class="n">WOMAN</span>       <span class="mi">44</span>
+<span class="n">NEWMAN</span>      <span class="mi">43</span>
+<span class="n">SUSAN</span>       <span class="mi">28</span>
+<span class="n">FRANK</span>       <span class="mi">26</span>
+<span class="n">ESTELLE</span>     <span class="mi">24</span>
+</pre></div>
+
+
 <p>The appearances are also dominated by the main cast. Interestingly, some lines are attributed to "MAN" and "WOMAN", which points to some data quality issues. Ideally unnamed characters would have unique names like "MAN WATERING PLANTS".</p>
-<h1>Project Ideas</h1>
-<h3>Script Viewer</h3>
+<h3>Project Ideas</h3>
+<h4>Script Viewer</h4>
 <p>One of the main reasons I initially got this data together was to learn some front-end skills by developing a better UI for browsing through Seinfeld scripts. I had imagined all kinds of cross-linking between episodes and possibly links off to Wikipedia.</p>
-<h3>Exploration of the Characters</h3>
+<h4>Exploration of the Characters</h4>
 <ul>
 <li>Do particular characters have catch phrases (maybe high TF-IDF ngrams where TF is within the character's lines and IDF is for all speakers)?</li>
 <li>Are there characters who gain screen time over time?</li>
 <li>How many episodes are heavy on just a few of the main characters (e.g. a Jerry and George episode)?</li>
 <li>How positive, on average, are the various characters? Are there other interesting stylistic characteristics to look at?</li>
 </ul>
-<h3>Corpus for Exploring NLP Algorithms</h3>
+<h4>Corpus for Exploring NLP Algorithms</h4>
 <p>I like playing with Wikipedia, but it'll be fun to have something a bit smaller and closer to my heart. It'd be fun to play around with language models and to generate sentences for particular characters (e.g. a Kramerish sentence).</p></div>
 	<hr>
 	<h2>Comments</h2>
@@ -170,7 +183,7 @@ ESTELLE     24</p>
 					<div class="col-md-3">
 						<h4>Navigation</h4>
 						<ul class="list-unstyled my-list-style">
-							<li><a href="http://colinpollock.net">Colin Pollock</a></li>
+							<li><a href="http://colinpollock.net">Blog</a></li>
 							<li><a href="http://colinpollock.net/feeds/all.atom.xml" type="application/atom+xml"><i class="fa fa-rss "></i> atom</a></li>
 						</ul>
 					</div>
@@ -216,6 +229,5 @@ jQuery(document).ready(function($) {
 	});
 });
 </script>
-<a href="https://github.com/colinpollock"><img style="position: absolute; top: 40px; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
 </body>
 </html>
