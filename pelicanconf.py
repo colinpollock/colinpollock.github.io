@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = "Colin Pollock"
-SITENAME = AUTHOR
+SITENAME = "Blog"
 SITEURL = ""
 
 PATH = "content"
@@ -13,7 +13,6 @@ TIMEZONE = "America/Los_Angeles"
 DEFAULT_LANG = "en"
 
 THEME = "aboutwilson"
-GITHUB_URL = "https://github.com/colinpollock"
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -23,9 +22,7 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-# LINKS = (
-# ("Python.org", "http://python.org/"),
-# )
+# LINKS = (("Python.org", "http://python.org/"),)
 
 # Social widget
 SOCIAL = (
