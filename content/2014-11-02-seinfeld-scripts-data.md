@@ -2,8 +2,9 @@
 Title: Seinfeld Script Data
 Date: 2014-11-02 17:02:00
 Modified: 2020-03-05 23:00:00
-Category: data
-Tags: seinfeld, seinfeld scripts
+Category:
+Tags: seinfeld, data
+Description: I packaged up all of the Seinfeld scripts in a SQLite database. This post describes the database's schema and how you can interact with it.
 Slug: seinfeld-script-data
 ---
 
@@ -12,14 +13,13 @@ I grew up watching Seinfeld and for better or worse it formed a large part of my
 So when I was experimenting with various natural language processing algorithms I thought it'd be fun to use Seinfeld scripts as a corpus. I packaged up the scripts in a SQLite database, and this post outlines the schema and how you can interact with it.
 
 
-### Data ###
-
+## Data
 If you want to generate this data yourself check out [the code on my github](http://github.com/colinpollock/seinfeld-scripts). If you just want the SQLite DB file please feel free to send me a message on github or email me.
 
+## Database Schema
+In this section I'll show the schema for each of the tables and a sample query with results.
 
-### Database Schema ###
-
-#### Episode ####
+### Episode
 ```sql
 sqlite> .schema episode
 CREATE TABLE episode(
@@ -41,7 +41,7 @@ id	season_number	episode_number	title	the_date	writer	director
 ```
 
 
-#### Utterance ####
+### Utterance
 ```sql
 sqlite> .schema utterance
 CREATE TABLE utterance(
@@ -62,7 +62,7 @@ id	episode_id	utterance_number	speaker
 ```
 
 
-#### Sentence ####
+### Sentence
 ```sql
 sqlite> .schema sentence
 CREATE TABLE sentence(
@@ -83,12 +83,12 @@ id	utterance_id	sentence_number	text
 ```
 
 
-### Some Simple Statistics ###
+## Some Simple Statistics
 
 There are a lot of potentially interesting things to do with this data, most of which would require further processing. There are some basic but interesting questions that can be answered by simple SQL queries.
 
 
-#### Which characters speak the most lines? ####
+### Which characters speak the most lines?
 
 ```sql
 SELECT speaker, COUNT(*) AS count
@@ -112,7 +112,7 @@ ESTELLE     273
 That seems about right-- the show is definitely dominated by the four main characters.
 
 
-#### Which characters have speaking roles in the greatest number of episodes? ####
+### Which characters have speaking roles in the greatest number of episodes?
 
 ```sql
 SELECT u.speaker, COUNT(DISTINCT e.id) AS num_episodes
@@ -136,16 +136,16 @@ ESTELLE     24
 The appearances are also dominated by the main cast. Interestingly, some lines are attributed to "MAN" and "WOMAN", which points to some data quality issues. Ideally unnamed characters would have unique names like "MAN WATERING PLANTS".
 
 
-### Project Ideas ###
+## Project Ideas
 
-#### Script Viewer ####
+### Script Viewer
 One of the main reasons I initially got this data together was to learn some front-end skills by developing a better UI for browsing through Seinfeld scripts. I had imagined all kinds of cross-linking between episodes and possibly links off to Wikipedia.
 
-#### Exploration of the Characters ####
+### Exploration of the Characters
 * Do particular characters have catch phrases (maybe high TF-IDF ngrams where TF is within the character's lines and IDF is for all speakers)?
 * Are there characters who gain screen time over time?
 * How many episodes are heavy on just a few of the main characters (e.g. a Jerry and George episode)?
 * How positive, on average, are the various characters? Are there other interesting stylistic characteristics to look at?
 
-#### Corpus for Exploring NLP Algorithms ####
+### Corpus for Exploring NLP Algorithms
 I like playing with Wikipedia, but it'll be fun to have something a bit smaller and closer to my heart. It'd be fun to play around with language models and to generate sentences for particular characters (e.g. a Kramerish sentence).
