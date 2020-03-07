@@ -9,11 +9,11 @@ PATH = "content"
 
 TIMEZONE = "America/Los_Angeles"
 DEFAULT_LANG = "en"
-
 THEME = "brutalist"
+
+# Some setting specific to the Brutalist theme.
 FIRST_NAME = "Colin"
 GITHUB = "https://github.com/colinpollock"
-
 MENUITEMS = [("tags", "/tags")]
 
 
@@ -22,6 +22,7 @@ PAGE_URL = "pages/{slug}"
 ARTICLE_URL = "{slug}"
 TAG_URL = "tag/{slug}"
 CATEGORY_URL = "category/{slug}"
+
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
