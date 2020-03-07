@@ -16,6 +16,7 @@ THEME = "brutalist"
 FIRST_NAME = "Colin"
 GITHUB = "https://github.com/colinpollock"
 MENUITEMS = [("tags", "/tags")]
+GOOGLE_ANALYTICS = "UA-21128946-2"
 
 
 # Using some URL scheme settings from https://github.com/j127/pelican_blog_project_template/blob/master/pelicanconf.py
