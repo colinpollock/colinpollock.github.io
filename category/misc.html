@@ -2,14 +2,19 @@
 <html lang="en">
 
 <head>
-  <title>Colin Pollock - Categories</title>
+  <title>Colin Pollock</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
   <link
     href="http://colinpollock.net/feeds/all.atom.xml"
     type="application/atom+xml" rel="alternate" title="Colin Pollock Full Atom Feed" />
+  <link
+    href="http://colinpollock.net/feeds/{slug}.atom.xml"
+    type="application/atom+xml" rel="alternate" title="Colin Pollock Categories Atom Feed" />
   <!-- twitter card metadata -->
   <!-- OG Tags -->
+<meta property="og:url" content="http://colinpollock.net/category/misc" />
+<meta property="og:title" content="Colin Pollock | misc" />
   <!-- favicon -->
   <!-- moment.js for date formatting -->
   <script src="http://colinpollock.net/theme/js/moment.js"></script>
@@ -56,13 +61,39 @@
   </div>
   <div class="page" role="main">
 <div class="page-title">
-  <h1>categories</h1>
+  <h1>misc</h1>
 </div>
 <div class="articles">
-  <ul>
-  </ul>
-</div>
-    <footer>
+  <ol>
+    <li>
+      <article>
+        <footer>
+          <p>
+            <time datetime="2014-11-02 17:02:00-08:00">
+              <script>document.write(moment('2014-11-02 17:02:00-08:00').format('LL'));</script>
+            </time>
+          </p>
+        </footer>
+        <header>
+          <a href="http://colinpollock.net/seinfeld-script-data">
+            <h2>Seinfeld Script Data</h2>
+          </a>
+        </header>
+        <div class="summary">I packaged up all of the Seinfeld scripts in a SQLite database. This post describes the database's schema and how you can interact with it. </div>
+        <div class="tags">
+          <ul class="tags">
+            <li><a href="http://colinpollock.net/tag/seinfeld" class="tag">seinfeld</a></li>
+            <li><a href="http://colinpollock.net/tag/data" class="tag">data</a></li>
+          </ul>
+        </div>
+        <a href="http://colinpollock.net/seinfeld-script-data">
+          <p class="readmore">Read more...</p>
+        </a>
+      </article>
+    </li>
+  </ol>
+
+</div>    <footer>
       <div class="icons">
         <a href="https://github.com/colinpollock" target="_blank">
           <div class="icon-github icon"></div>

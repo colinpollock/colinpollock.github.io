@@ -1,59 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<title>Seinfeld Script Data — Blog</title>
-	<meta name="description" content="Title: Seinfeld Script Data; Date: 2014-11-02; Author: Colin Pollock">
-	<meta name="author" content="Colin Pollock">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-	<!--[if lt IE 9]>
-		<script src="http://colinpollock.net/theme/html5.js"></script>
-		<![endif]-->
-	<link href="http://colinpollock.net/theme/css/ipython.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css" rel="stylesheet">
-	<link href="http://colinpollock.net/theme/css/local.css" rel="stylesheet">
-	<link href="http://colinpollock.net/theme/css/pygments.css" rel="stylesheet">
+  <title>Colin Pollock</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <link
+    href="http://colinpollock.net/feeds/all.atom.xml"
+    type="application/atom+xml" rel="alternate" title="Colin Pollock Full Atom Feed" />
+  <link
+    href="http://colinpollock.net/feeds/{slug}.atom.xml"
+    type="application/atom+xml" rel="alternate" title="Colin Pollock Categories Atom Feed" />
+  <!-- twitter card metadata -->
+<meta name="twitter:site" content="">
+<meta name="twitter:title" content="Seinfeld Script Data">
+<meta name="twitter:description" content="I packaged up all of the Seinfeld scripts in a SQLite database. This post describes the database's schema and how you can interact with it.">
+  <!-- OG Tags -->
+<meta property="og:url" content="http://colinpollock.net/seinfeld-script-data" />
+<meta property="og:title" content="Colin Pollock | Seinfeld Script Data" />
+<meta property="og:description" content="I packaged up all of the Seinfeld scripts in a SQLite database. This post describes the database's schema and how you can interact with it." />
+  <!-- favicon -->
+  <!-- moment.js for date formatting -->
+  <script src="http://colinpollock.net/theme/js/moment.js"></script>
+  <!-- css -->
+  <link rel="stylesheet" type="text/css" href="http://colinpollock.net/theme/css/main.css" />
+  <script>
+
+    /*! grunt-grunticon Stylesheet Loader - v2.1.2 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+
+    (function (e) { function t(t, n, r, o) { "use strict"; function a() { for (var e, n = 0; u.length > n; n++)u[n].href && u[n].href.indexOf(t) > -1 && (e = !0); e ? i.media = r || "all" : setTimeout(a) } var i = e.document.createElement("link"), l = n || e.document.getElementsByTagName("script")[0], u = e.document.styleSheets; return i.rel = "stylesheet", i.href = t, i.media = "only x", i.onload = o || null, l.parentNode.insertBefore(i, l), a(), i } var n = function (r, o) { "use strict"; if (r && 3 === r.length) { var a = e.navigator, i = e.Image, l = !(!document.createElementNS || !document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect || !document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1") || e.opera && -1 === a.userAgent.indexOf("Chrome") || -1 !== a.userAgent.indexOf("Series40")), u = new i; u.onerror = function () { n.method = "png", n.href = r[2], t(r[2]) }, u.onload = function () { var e = 1 === u.width && 1 === u.height, a = r[e && l ? 0 : e ? 1 : 2]; n.method = e && l ? "svg" : e ? "datapng" : "png", n.href = a, t(a, null, null, o) }, u.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==", document.documentElement.className += " grunticon" } }; n.loadCSS = t, e.grunticon = n })(this); (function (e, t) { "use strict"; var n = t.document, r = "grunticon:", o = function (e) { if (n.attachEvent ? "complete" === n.readyState : "loading" !== n.readyState) e(); else { var t = !1; n.addEventListener("readystatechange", function () { t || (t = !0, e()) }, !1) } }, a = function (e) { return t.document.querySelector('link[href$="' + e + '"]') }, c = function (e) { var t, n, o, a, c, i, u = {}; if (t = e.sheet, !t) return u; n = t.cssRules ? t.cssRules : t.rules; for (var l = 0; n.length > l; l++)o = n[l].cssText, a = r + n[l].selectorText, c = o.split(");")[0].match(/US\-ASCII\,([^"']+)/), c && c[1] && (i = decodeURIComponent(c[1]), u[a] = i); return u }, i = function (e) { var t, o, a; o = "data-grunticon-embed"; for (var c in e) if (a = c.slice(r.length), t = n.querySelectorAll(a + "[" + o + "]"), t.length) for (var i = 0; t.length > i; i++)t[i].innerHTML = e[c], t[i].style.backgroundImage = "none", t[i].removeAttribute(o); return t }, u = function (t) { "svg" === e.method && o(function () { i(c(a(e.href))), "function" == typeof t && t() }) }; e.embedIcons = i, e.getCSS = a, e.getIcons = c, e.ready = o, e.svgLoadedCallback = u, e.embedSVG = u })(grunticon, this);
+
+    grunticon(["http://colinpollock.net/theme/css/icons.data.svg.css", "http://colinpollock.net/theme/css/icons.data.png.css", "http://colinpollock.net/theme/css/icons.fallback.css"]);
+  </script>
+  <noscript>
+    <link href="http://colinpollock.net/theme/css/icons.fallback.css" rel="stylesheet"></noscript>
+  <!-- menu toggle javascript -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", initMenu);
+
+    function initMenu() {
+      var menu = document.getElementById("menu");
+      var menulink = document.getElementById("menu-link");
+      menulink.addEventListener("click", function toggleMenu() {
+        window.event.preventDefault();
+        menulink.classList.toggle('active');
+        menu.classList.toggle('active');
+      });
+    };
+  </script>
+
+<meta name="description" content="I packaged up all of the Seinfeld scripts in a SQLite database. This post describes the database's schema and how you can interact with it." />
+
+<meta name="tags" content="seinfeld" />
+<meta name="tags" content="data" />
+
 </head>
+
 <body>
-<div class="container">
-	<div class="page-header">
-		<h1><a href="http://colinpollock.net/">Blog</a>
-			<br>	</div>
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-<div class="article" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="text-center article-header">
-		<h1 itemprop="name headline" class="article-title">Seinfeld Script Data</h1>
-		<span itemprop="author" itemscope itemtype="http://schema.org/Person">
-			<h4 itemprop="name">Colin Pollock</h4>
-		</span>
-		<time datetime="2014-11-02T17:02:00-08:00" itemprop="datePublished">Sun 02 November 2014</time>
-	</div>
-	<div>
-		Category:
-		<span itemprop="articleSection">
-			<a href="http://colinpollock.net/category/data.html" rel="category">data</a>
-		</span>
-	</div>
- 
-	<div>
-		Tags:
-		<span itemprop="keywords">
-			<a href="http://colinpollock.net/tag/seinfeld.html" rel="tag">seinfeld</a>
-		</span>
-		<span itemprop="keywords">
-			<a href="http://colinpollock.net/tag/seinfeld-scripts.html" rel="tag">seinfeld scripts</a>
-		</span>
-	</div>
-	<div itemprop="articleBody" class="article-body"><p>I grew up watching Seinfeld and for better or worse it formed a large part of my personality. I was too young to watch the early seasons live, but for the later ones I clearly remember the excitement I'd feel at 8:30pm Thursday night when Friends started because that meant it was only half an hour until Seinfeld would come on.</p>
+  <div role="banner" id="masthead">
+    <header>
+      <h1><a href="/">Colin's Blog</a></h1>
+      <a href="#menu" id="menu-link">more stuff</a>
+      <nav id="menu">
+        <ul>
+          <li><a href="http://colinpollock.net/pages/me">me</a></li>
+            <li><a href="/tags">tags</a></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+  <div class="page" role="main">
+<div class="article" role="article">
+  <article>
+    <footer>
+      <a name="top"></a>
+      <p>
+        <time datetime=" 2014-11-02 17:02:00-08:00">
+          <script>document.write(moment('2014-11-02 17:02:00-08:00').format('LL'));</script>
+        </time>
+      </p>
+    </footer>
+    <header>
+      <h2>
+        Seinfeld Script Data
+      </h2>
+    </header>
+    <div class="content">
+      <p>I grew up watching Seinfeld and for better or worse it formed a large part of my personality. I was too young to watch the early seasons live, but for the later ones I clearly remember the excitement I'd feel at 8:30pm Thursday night when Friends started because that meant it was only half an hour until Seinfeld would come on.</p>
 <p>So when I was experimenting with various natural language processing algorithms I thought it'd be fun to use Seinfeld scripts as a corpus. I packaged up the scripts in a SQLite database, and this post outlines the schema and how you can interact with it.</p>
-<h3>Data</h3>
+<h2>Data</h2>
 <p>If you want to generate this data yourself check out <a href="http://github.com/colinpollock/seinfeld-scripts">the code on my github</a>. If you just want the SQLite DB file please feel free to send me a message on github or email me.</p>
-<h3>Database Schema</h3>
-<h4>Episode</h4>
+<h2>Database Schema</h2>
+<p>In this section I'll show the schema for each of the tables and a sample query with results.</p>
+<h3>Episode</h3>
 <div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="p">.</span><span class="k">schema</span> <span class="n">episode</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">episode</span><span class="p">(</span>
     <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
@@ -74,7 +113,7 @@
 </pre></div>
 
 
-<h4>Utterance</h4>
+<h3>Utterance</h3>
 <div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="p">.</span><span class="k">schema</span> <span class="n">utterance</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">utterance</span><span class="p">(</span>
     <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
@@ -94,7 +133,7 @@
 </pre></div>
 
 
-<h4>Sentence</h4>
+<h3>Sentence</h3>
 <div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="p">.</span><span class="k">schema</span> <span class="n">sentence</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">sentence</span><span class="p">(</span>
     <span class="n">id</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
@@ -113,9 +152,9 @@
 </pre></div>
 
 
-<h3>Some Simple Statistics</h3>
+<h2>Some Simple Statistics</h2>
 <p>There are a lot of potentially interesting things to do with this data, most of which would require further processing. There are some basic but interesting questions that can be answered by simple SQL queries.</p>
-<h4>Which characters speak the most lines?</h4>
+<h3>Which characters speak the most lines?</h3>
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">speaker</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="k">count</span>
 <span class="k">FROM</span> <span class="n">utterance</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">speaker</span>
@@ -136,7 +175,7 @@
 
 
 <p>That seems about right-- the show is definitely dominated by the four main characters.</p>
-<h4>Which characters have speaking roles in the greatest number of episodes?</h4>
+<h3>Which characters have speaking roles in the greatest number of episodes?</h3>
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">u</span><span class="p">.</span><span class="n">speaker</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">e</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">AS</span> <span class="n">num_episodes</span>
 <span class="k">FROM</span> <span class="n">episode</span> <span class="n">e</span> <span class="k">JOIN</span> <span class="n">utterance</span> <span class="n">u</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">u</span><span class="p">.</span><span class="n">episode_id</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">u</span><span class="p">.</span><span class="n">speaker</span>
@@ -157,77 +196,35 @@
 
 
 <p>The appearances are also dominated by the main cast. Interestingly, some lines are attributed to "MAN" and "WOMAN", which points to some data quality issues. Ideally unnamed characters would have unique names like "MAN WATERING PLANTS".</p>
-<h3>Project Ideas</h3>
-<h4>Script Viewer</h4>
+<h2>Project Ideas</h2>
+<h3>Script Viewer</h3>
 <p>One of the main reasons I initially got this data together was to learn some front-end skills by developing a better UI for browsing through Seinfeld scripts. I had imagined all kinds of cross-linking between episodes and possibly links off to Wikipedia.</p>
-<h4>Exploration of the Characters</h4>
+<h3>Exploration of the Characters</h3>
 <ul>
 <li>Do particular characters have catch phrases (maybe high TF-IDF ngrams where TF is within the character's lines and IDF is for all speakers)?</li>
 <li>Are there characters who gain screen time over time?</li>
 <li>How many episodes are heavy on just a few of the main characters (e.g. a Jerry and George episode)?</li>
 <li>How positive, on average, are the various characters? Are there other interesting stylistic characteristics to look at?</li>
 </ul>
-<h4>Corpus for Exploring NLP Algorithms</h4>
-<p>I like playing with Wikipedia, but it'll be fun to have something a bit smaller and closer to my heart. It'd be fun to play around with language models and to generate sentences for particular characters (e.g. a Kramerish sentence).</p></div>
-	<hr>
-	<h2>Comments</h2>
+<h3>Corpus for Exploring NLP Algorithms</h3>
+<p>I like playing with Wikipedia, but it'll be fun to have something a bit smaller and closer to my heart. It'd be fun to play around with language models and to generate sentences for particular characters (e.g. a Kramerish sentence).</p>
+    </div>
+    <div class="back-to-top">
+      <a href="#top">back to top</a>
+    </div>
+  </article>
 </div>
-		</div>
-	</div> 	<!-- <hr> -->
-</div> <!-- /container -->
-<footer class="aw-footer bg-danger">
-	<div class="container"> <!-- footer -->
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="row">
-					<div class="col-md-3">
-						<h4>Navigation</h4>
-						<ul class="list-unstyled my-list-style">
-							<li><a href="http://colinpollock.net">Blog</a></li>
-							<li><a href="http://colinpollock.net/feeds/all.atom.xml" type="application/atom+xml"><i class="fa fa-rss "></i> atom</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<h4>Author</h4>
-						<ul class="list-unstyled my-list-style">
-							<li><a href="https://github.com/colinpollock">github</a></li>
-							<li><a href="https://www.linkedin.com/in/pollockcolin/">linkedin</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<h4>Categories</h4>
-						<ul class="list-unstyled my-list-style">
-							<li><a href="http://colinpollock.net/category/data.html">data (1)</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12 text-center center-block aw-bottom">
-			<p>&copy; Colin Pollock 2016</p>
-			<p>Powered by Pelican</p>
-		</div>
-	</div>
-</div>
-<!-- JavaScript -->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-	$("div.collapseheader").click(function () {
-		$header = $(this).children("span").first();
-		$codearea = $(this).children(".input_area");
-		$codearea.slideToggle(500, function () {
-			$header.text(function () {
-				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
-			});
-		});
-	});
-});
-</script>
+<!-- end article -->
+    <footer>
+      <div class="icons">
+        <a href="https://github.com/colinpollock" target="_blank">
+          <div class="icon-github icon"></div>
+        </a>
+      </div>
+      <p>©
+        <script>document.write(moment().format('YYYY'));</script> </p>
+    </footer>
+  </div>
 </body>
+
 </html>
