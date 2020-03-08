@@ -3,7 +3,7 @@ Title: Jeopardy Question Difficulty
 Date: 2020-02-14
 Category:
 Tags: jeopardy
-Description: Everyone who watches Jeopardy knows the $1000 question is harder than the $200 question. But how much harder? And how does difficulty compare between rounds? How difficult are Daily Doubles and Final Jeopardy compared to other questions? This post will answer each of these questions, and also explore how difficult varies by category.
+Description: Everyone who watches Jeopardy knows the $1000 question is harder than the $200 question. But how much harder? And how does difficulty compare between rounds? How difficult are Daily Doubles and Final Jeopardy compared to other questions? This post will answer each of these questions, and also explore how difficulty varies by category.
 Slug: jeopardy-question-difficulty
 ---
 
