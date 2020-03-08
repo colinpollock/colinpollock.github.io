@@ -17,8 +17,17 @@
   <link
     href="http://colinpollock.net/feeds/all.atom.xml"
     type="application/atom+xml" rel="alternate" title="Colin Pollock Full Atom Feed" />
+  <link
+    href="http://colinpollock.net/feeds/{slug}.atom.xml"
+    type="application/atom+xml" rel="alternate" title="Colin Pollock Categories Atom Feed" />
   <!-- twitter card metadata -->
+<meta name="twitter:site" content="">
+<meta name="twitter:title" content="sonorant.io">
+<meta name="twitter:description" content="sonorant.io is a web app that lets you iteratively build novel English words by choosing a phoneme (i.e. sound) from a language model's predictions of the next phoneme, one at a time.">
   <!-- OG Tags -->
+<meta property="og:url" content="http://colinpollock.net/sonorant-io" />
+<meta property="og:title" content="Colin Pollock | sonorant.io" />
+<meta property="og:description" content="sonorant.io is a web app that lets you iteratively build novel English words by choosing a phoneme (i.e. sound) from a language model's predictions of the next phoneme, one at a time." />
   <!-- favicon -->
   <!-- moment.js for date formatting -->
   <script src="http://colinpollock.net/theme/js/moment.js"></script>
@@ -48,6 +57,13 @@
       });
     };
   </script>
+
+<meta name="description" content="sonorant.io is a web app that lets you iteratively build novel English words by choosing a phoneme (i.e. sound) from a language model's predictions of the next phoneme, one at a time." />
+
+<meta name="tags" content="linguistics" />
+<meta name="tags" content="language models" />
+<meta name="tags" content="pytorch" />
+
 </head>
 
 <body>
@@ -59,104 +75,60 @@
         <ul>
           <li><a href="http://colinpollock.net/pages/me">me</a></li>
             <li><a href="/tags">tags</a></li>
-            <li><a href="http://colinpollock.net/category/projects">projects</a>
+            <li class="active" ><a href="http://colinpollock.net/category/projects">projects</a>
               </li>
         </ul>
       </nav>
     </header>
   </div>
   <div class="page" role="main">
-<div class="page-title">
-  <h1>archives</h1>
-</div>
-<div class="articles">
-  <ol>
-    <li>
-      <article>
-        <footer>
-          <p>
-            <time datetime="2020-03-06 00:00:00-08:00">
-              <script>document.write(moment('2020-03-06 00:00:00-08:00').format('LL'));</script>
-            </time>
-            in <a href="http://colinpollock.net/category/projects"><span
-                class="category-tag">projects</span></a>
-          </p>
-        </footer>
-        <header>
-          <a href="http://colinpollock.net/sonorant-io">
-            <h2>sonorant.io</h2>
-          </a>
-        </header>
-        <div class="summary"><p><a href="http://sonorant.io">sonorant.io</a> is a web app that lets you iteratively build novel English words by choosing a phoneme (i.e. sound) from a language model's predictions of the next phoneme, one at a time.</p>
+<div class="article" role="article">
+  <article>
+    <footer>
+      <a name="top"></a>
+      <p>
+        <time datetime=" 2020-03-06 00:00:00-08:00">
+          <script>document.write(moment('2020-03-06 00:00:00-08:00').format('LL'));</script>
+        </time>
+      </p>
+    </footer>
+    <header>
+      <h2>
+        sonorant.io
+      </h2>
+    </header>
+    <div class="content">
+      <p><a href="http://sonorant.io">sonorant.io</a> is a web app that lets you iteratively build novel English words by choosing a phoneme (i.e. sound) from a language model's predictions of the next phoneme, one at a time.</p>
 <p><img alt="Hello!" src="/images/sonorant-hello.png" title="Hello!"></p>
 <h2>Background</h2>
-<p>Spelling in English is often ambiguous and misleading, so linguists use the [International Phonetic Alphabet …</p> </div>
-        <div class="tags">
-          <ul class="tags">
-            <li><a href="http://colinpollock.net/tag/linguistics" class="tag">linguistics</a></li>
-            <li><a href="http://colinpollock.net/tag/language-models" class="tag">language models</a></li>
-            <li><a href="http://colinpollock.net/tag/pytorch" class="tag">pytorch</a></li>
-          </ul>
-        </div>
-        <a href="http://colinpollock.net/sonorant-io">
-          <p class="readmore">Read more...</p>
-        </a>
-      </article>
-    </li>
-    <li>
-      <article>
-        <footer>
-          <p>
-            <time datetime="2020-02-14 00:00:00-08:00">
-              <script>document.write(moment('2020-02-14 00:00:00-08:00').format('LL'));</script>
-            </time>
-          </p>
-        </footer>
-        <header>
-          <a href="http://colinpollock.net/jeopardy-question-difficulty">
-            <h2>Jeopardy Question Difficulty</h2>
-          </a>
-        </header>
-        <div class="summary"><p>I made <a href="http://www.trivia-trainer.com/?blog">Trivia Trainer</a> to help myself (and other aspiring Jeopardy contestants) get better at Trivia. It works by allowing users to quiz themselves on questions in 53 specific categories (e.g. Literature, Sports, Geography) so that they can track their improvement and identify their weaknesses.</p>
-<p>Unlike on Jeopardy (where …</p> </div>
-        <div class="tags">
-          <ul class="tags">
-            <li><a href="http://colinpollock.net/tag/jeopardy" class="tag">jeopardy</a></li>
-          </ul>
-        </div>
-        <a href="http://colinpollock.net/jeopardy-question-difficulty">
-          <p class="readmore">Read more...</p>
-        </a>
-      </article>
-    </li>
-    <li>
-      <article>
-        <footer>
-          <p>
-            <time datetime="2014-11-02 17:02:00-08:00">
-              <script>document.write(moment('2014-11-02 17:02:00-08:00').format('LL'));</script>
-            </time>
-          </p>
-        </footer>
-        <header>
-          <a href="http://colinpollock.net/seinfeld-script-data">
-            <h2>Seinfeld Script Data</h2>
-          </a>
-        </header>
-        <div class="summary"><p>I grew up watching Seinfeld and for better or worse it formed a large part of my personality. I was too young to watch the early seasons live, but for the later ones I clearly remember the excitement I'd feel at 8:30pm Thursday night when Friends started because that …</p> </div>
-        <div class="tags">
-          <ul class="tags">
-            <li><a href="http://colinpollock.net/tag/seinfeld" class="tag">seinfeld</a></li>
-            <li><a href="http://colinpollock.net/tag/data" class="tag">data</a></li>
-          </ul>
-        </div>
-        <a href="http://colinpollock.net/seinfeld-script-data">
-          <p class="readmore">Read more...</p>
-        </a>
-      </article>
-    </li>
-  </ol>
+<p>Spelling in English is often ambiguous and misleading, so linguists use the [International Phonetic Alphabet], or IPA, to phonetically represent words. The <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict">CMU Pronouncing Dictionary</a> contains pronunciations in IPA<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> for about 125 thousand words. As an example, the CMU Dict entry for “catfish” is <strong>/ˈkætˌfɪʃ/</strong>.</p>
+<p>I <a href="https://github.com/colinpollock/sonorant/blob/master/Model%20Training.ipynb">trained a language model</a> over these pronunciations and used it to power the UI screenshotted above. Most language models you'll find on the web are modeling how likely full sentences are, but this one models how likely a sequences of sounds is to be an English word.</p>
+<p>Any language model can be used to generate novel sequences of tokens by repeatedly calculating the distribution for what should come next, sampling from the distribution, adding that sampled token to the word, and repeating. It’s common to automate this whole process and have the computer program do the sampling, but for the app I made it’s up to the human to do the sampling.</p>
+<h2>The App</h2>
+<p>When you first see the app you haven’t chosen any phonemes yet so your word is empty and looks like this: <strong>//</strong>. The chart is a distribution over all phonemes representing which ones the model believes are most likely to come at the beginning of the word. If you click on any phoneme then your word will be updated and the chart will update to represent the distribution for the following phoneme. The updated pronunciation will also be played as audio. You can continue clicking until you click the <strong>&lt;END></strong> token, which finishes your word.</p>
+<h2>Playing with the Model</h2>
+<p>The model has learned that the phoneme <strong>/s/</strong> is very likely at the beginning of a word but that <strong>/ŋ/</strong> is extremely unlikely. It has also learned that /ˈstr/ is a valid beginning to a word but <strong>/ˈstm/</strong> is not.</p>
+<p>Here are a few things you can try to do:</p>
+<ul>
+<li>Make the longest word you can.</li>
+<li>Make a word that isn’t actually pronouncable.</li>
+<li>Always select the most likely phoneme to see what the model thinks is the most likely English word. You can also do this after giving a starting point, which would e.g. show you that the most likely word starting with <strong>/ˌtʃ/</strong> is <strong>/ˌtʃɑːnˈstɛntən/</strong>.</li>
+</ul>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The CMU Dictionary was originally in <a href="https://en.wikipedia.org/wiki/ARPABET">ARPABET</a>, but I used <a href="https://github.com/menelik3/cmudict-ipa">this version</a> converted to IPA.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
 </div>
+    </div>
+    <div class="back-to-top">
+      <a href="#top">back to top</a>
+    </div>
+  </article>
+</div>
+<!-- end article -->
     <footer>
       <div class="icons">
         <a href="https://github.com/colinpollock" target="_blank">
