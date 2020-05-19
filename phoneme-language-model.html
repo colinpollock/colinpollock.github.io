@@ -11,14 +11,23 @@
 
   gtag('config', 'UA-21128946-2');
 </script>
-  <title>Colin Pollock - Tags</title>
+  <title>Colin Pollock</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
   <link
     href="http://colinpollock.net/feeds/all.atom.xml"
     type="application/atom+xml" rel="alternate" title="Colin Pollock Full Atom Feed" />
+  <link
+    href="http://colinpollock.net/feeds/{slug}.atom.xml"
+    type="application/atom+xml" rel="alternate" title="Colin Pollock Categories Atom Feed" />
   <!-- twitter card metadata -->
+<meta name="twitter:site" content="">
+<meta name="twitter:title" content="PyTorch Language Model">
+<meta name="twitter:description" content="meow">
   <!-- OG Tags -->
+<meta property="og:url" content="http://colinpollock.net/phoneme-language-model" />
+<meta property="og:title" content="Colin Pollock | PyTorch Language Model" />
+<meta property="og:description" content="meow" />
   <!-- favicon -->
   <!-- moment.js for date formatting -->
   <script src="http://colinpollock.net/theme/js/moment.js"></script>
@@ -48,6 +57,12 @@
       });
     };
   </script>
+
+<meta name="description" content="meow" />
+
+<meta name="tags" content="language models" />
+<meta name="tags" content="pytorch" />
+
 </head>
 
 <body>
@@ -59,26 +74,65 @@
         <ul>
           <li><a href="http://colinpollock.net/pages/about">about</a></li>
             <li><a href="/tags">tags</a></li>
-            <li><a href="http://colinpollock.net/category/projects">projects</a>
+            <li class="active" ><a href="http://colinpollock.net/category/projects">projects</a>
               </li>
         </ul>
       </nav>
     </header>
   </div>
   <div class="page" role="main">
-<div class="page-title">
-  <h1>tags</h1>
+<div class="article" role="article">
+  <article>
+    <footer>
+      <a name="top"></a>
+      <p>
+        <time datetime=" 2020-03-20 00:00:00-07:00">
+          <script>document.write(moment('2020-03-20 00:00:00-07:00').format('LL'));</script>
+        </time>
+      </p>
+    </footer>
+    <header>
+      <h2>
+        PyTorch Language Model
+      </h2>
+    </header>
+    <div class="content">
+      <h6></h6>
+<p>I wanted to build a language model over phonetic representations of English words to power generate
+novel English words and to power sonorant.io (meow see this post for more on what that'd be for).
+To power this I made a PyTorch language model class with some nice functionality</p>
+<p>In
+this post I'll cover how I built and trained the language model using PyTorch.</p>
+<ul>
+<li>TODO: about training the model or about functionality for the model?</li>
+</ul>
+<p>*</p>
+<h2>Background</h2>
+<p>A language model models how likely a sequence tokens from a vocabulary is. For example, a language
+model over the vocabulary of English words might tell us that the probability of the tokens
+"saturday night live" is much higher than the probability of "saturday night avocado". Symbolically
+this would be <code>P("saturday night live")</code> &gt; <code>P("saturday night avocado")</code>. A language model can also
+be used to determine the probability of each token coming next following a sequence. For example,
+<code>P("live"|"saturday night")</code> &gt; <code>P("avocado"|"saturday night")</code> .</p>
+<p>The actual language model I trained is over the vocabulary of English phonemes, represented as
+IPA <a href="ipa">2</a> symbols. But the model would work for any vocabulary.</p>
+<ul>
+<li>TODO: emphasize reusable language model</li>
+</ul>
+<h2>The Data</h2>
+<h2>The Model</h2>
+<ul>
+<li>Show a diagram of layers</li>
+<li>explain the usage of the vocab</li>
+</ul>
+<h2>Finding the Best Model</h2>
+    </div>
+    <div class="back-to-top">
+      <a href="#top">back to top</a>
+    </div>
+  </article>
 </div>
-<div class="articles">
-  <ul>
-    <li><a href="http://colinpollock.net/tag/language-models">language models</a> <span class="count">(2)</span></li>
-    <li><a href="http://colinpollock.net/tag/pytorch">pytorch</a> <span class="count">(2)</span></li>
-    <li><a href="http://colinpollock.net/tag/linguistics">linguistics</a> <span class="count">(1)</span></li>
-    <li><a href="http://colinpollock.net/tag/jeopardy">jeopardy</a> <span class="count">(1)</span></li>
-    <li><a href="http://colinpollock.net/tag/seinfeld">seinfeld</a> <span class="count">(1)</span></li>
-    <li><a href="http://colinpollock.net/tag/data">data</a> <span class="count">(1)</span></li>
-  </ul>
-</div>
+<!-- end article -->
     <footer>
       <div class="icons">
       </div>
