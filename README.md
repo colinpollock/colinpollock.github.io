@@ -10,3 +10,6 @@ colinpollock.net
 6. `$ pelican-themes --install brutalist`. Use `--upgrade` instead of the theme was previously installed.
 7. `$ make devserver`
 8. Go to http://localhost:8000/
+
+## To update GH Pages ##
+1. `make github`
