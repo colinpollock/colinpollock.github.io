@@ -14,7 +14,7 @@ THEME = "brutalist"
 
 # Some setting specific to the Brutalist theme.
 FIRST_NAME = "Colin"
-GITHUB = "https://github.com/colinpollock"
+# GITHUB = "https://github.com/colinpollock"
 MENUITEMS = [("tags", "/tags")]
 GOOGLE_ANALYTICS = "UA-21128946-2"
 
@@ -33,12 +33,6 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-
-# Social widget
-SOCIAL = (
-    ("github", "https://github.com/colinpollock"),
-    ("linkedin", "https://www.linkedin.com/in/pollockcolin/"),
-)
 
 DEFAULT_PAGINATION = 10
 
