@@ -1,37 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Colin Pollock</title><link href="http://colinpollock.net/" rel="alternate"></link><link href="http://colinpollock.net/feeds/all.atom.xml" rel="self"></link><id>http://colinpollock.net/</id><updated>2020-03-20T00:00:00-07:00</updated><entry><title>PyTorch Language Model</title><link href="http://colinpollock.net/phoneme-language-model" rel="alternate"></link><published>2020-03-20T00:00:00-07:00</published><updated>2020-03-20T00:00:00-07:00</updated><author><name>Colin Pollock</name></author><id>tag:colinpollock.net,2020-03-20:/phoneme-language-model</id><summary type="html">&lt;h6&gt;&lt;/h6&gt;
-&lt;p&gt;I wanted to build a language model over phonetic representations of English words to power generate
-novel English words and to power sonorant.io (meow see this post for more on what that'd be for).
-To power this I made a PyTorch language model class with some nice functionality&lt;/p&gt;
-&lt;p&gt;In …&lt;/p&gt;</summary><content type="html">&lt;h6&gt;&lt;/h6&gt;
-&lt;p&gt;I wanted to build a language model over phonetic representations of English words to power generate
-novel English words and to power sonorant.io (meow see this post for more on what that'd be for).
-To power this I made a PyTorch language model class with some nice functionality&lt;/p&gt;
-&lt;p&gt;In
-this post I'll cover how I built and trained the language model using PyTorch.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;TODO: about training the model or about functionality for the model?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;*&lt;/p&gt;
-&lt;h2&gt;Background&lt;/h2&gt;
-&lt;p&gt;A language model models how likely a sequence tokens from a vocabulary is. For example, a language
-model over the vocabulary of English words might tell us that the probability of the tokens
-"saturday night live" is much higher than the probability of "saturday night avocado". Symbolically
-this would be &lt;code&gt;P("saturday night live")&lt;/code&gt; &amp;gt; &lt;code&gt;P("saturday night avocado")&lt;/code&gt;. A language model can also
-be used to determine the probability of each token coming next following a sequence. For example,
-&lt;code&gt;P("live"|"saturday night")&lt;/code&gt; &amp;gt; &lt;code&gt;P("avocado"|"saturday night")&lt;/code&gt; .&lt;/p&gt;
-&lt;p&gt;The actual language model I trained is over the vocabulary of English phonemes, represented as
-IPA &lt;a href="ipa"&gt;2&lt;/a&gt; symbols. But the model would work for any vocabulary.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;TODO: emphasize reusable language model&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;The Data&lt;/h2&gt;
-&lt;h2&gt;The Model&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Show a diagram of layers&lt;/li&gt;
-&lt;li&gt;explain the usage of the vocab&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Finding the Best Model&lt;/h2&gt;</content><category term="projects"></category><category term="language models"></category><category term="pytorch"></category></entry><entry><title>sonorant.io</title><link href="http://colinpollock.net/sonorant-io" rel="alternate"></link><published>2020-03-06T00:00:00-08:00</published><updated>2020-03-06T00:00:00-08:00</updated><author><name>Colin Pollock</name></author><id>tag:colinpollock.net,2020-03-06:/sonorant-io</id><summary type="html">&lt;p&gt;&lt;a href="http://sonorant.io"&gt;sonorant.io&lt;/a&gt; is a web app that lets you iteratively build novel English words by choosing a phoneme (i.e. sound) from a language model's predictions of the next phoneme, one at a time.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Colin Pollock</title><link href="http://colinpollock.net/" rel="alternate"></link><link href="http://colinpollock.net/feeds/all.atom.xml" rel="self"></link><id>http://colinpollock.net/</id><updated>2020-03-06T00:00:00-08:00</updated><entry><title>sonorant.io</title><link href="http://colinpollock.net/sonorant-io" rel="alternate"></link><published>2020-03-06T00:00:00-08:00</published><updated>2020-03-06T00:00:00-08:00</updated><author><name>Colin Pollock</name></author><id>tag:colinpollock.net,2020-03-06:/sonorant-io</id><summary type="html">&lt;p&gt;&lt;a href="http://sonorant.io"&gt;sonorant.io&lt;/a&gt; is a web app that lets you iteratively build novel English words by choosing a phoneme (i.e. sound) from a language model's predictions of the next phoneme, one at a time.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Hello!" src="/images/sonorant-hello.png" title="Hello!"&gt;&lt;/p&gt;
 &lt;h2&gt;Background&lt;/h2&gt;
 &lt;p&gt;Spelling in English is often ambiguous and misleading, so linguists use the [International Phonetic Alphabet …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://sonorant.io"&gt;sonorant.io&lt;/a&gt; is a web app that lets you iteratively build novel English words by choosing a phoneme (i.e. sound) from a language model's predictions of the next phoneme, one at a time.&lt;/p&gt;
