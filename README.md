@@ -12,4 +12,6 @@ colinpollock.net
 8. Go to http://localhost:8000/
 
 ## To update GH Pages ##
-1. `make github`
+1. Commit changes
+2. `git push origin HEAD`
+3. `make github`. I think this can be done without committing, but best to do it in this order anyways.
