@@ -1,5 +1,5 @@
 ---
-Title: Me
+Title: About
 ---
 
 I'm Colin. I like trivia, cats, linguistics, playing guitar, coding in Python, and probably some other things. I also like writing, and I'm hoping to use this blog to do more of it.
