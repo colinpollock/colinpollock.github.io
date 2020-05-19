@@ -1,7 +1,7 @@
 ---
 Title: sonorant.io
 Date: 2020-03-06
-Category: projects
+Category:
 Tags: linguistics, language models, pytorch,
 Description: sonorant.io is a web app that lets you iteratively build novel English words by choosing a phoneme (i.e. sound) from a language model's predictions of the next phoneme, one at a time.
 Slug: sonorant-io
