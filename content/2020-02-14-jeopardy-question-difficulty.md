@@ -7,7 +7,7 @@ Description: Everyone who watches Jeopardy knows the $1000 question is harder th
 Slug: jeopardy-question-difficulty
 ---
 
-I made [Trivia Trainer][1] to help myself (and other aspiring Jeopardy contestants) get better at Trivia. It works by allowing users to quiz themselves on questions in 53 specific categories (e.g. Literature, Sports, Geography) so that they can track their improvement and identify their weaknesses.
+I made [Trivia Trainer][1] to help myself (and other aspiring Jeopardy contestants) get better at Trivia. It works by allowing users to quiz themselves on questions in 53 specific categories (e.g. Literature, Sports, Geography) so that they can identify their weaknesses and track their improvement.
 
 Unlike on Jeopardy (where usually only a single contestant answers a question), on Trivia Trainer many users answer the same question so the percentage of attempts that are correct nicely captures how easy a question is. Throughout this post I call this _percent correct_. And for any given grouping of questions (e.g. Final Jeopardy questions) the percent correct is simply the average percentage correct across all questions in that group.
 
